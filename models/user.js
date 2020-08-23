@@ -3,45 +3,46 @@ var bcrypt = require("bcryptjs");
 const uuidv5 = require("uuid/v5");
 
 const UserSchema = new mongoose.Schema({
-  name: {
-    type: String
-  },
-  username: {
-    type: String
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  apikey: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  stations:[{
-    type: mongoose.Schema.Types.ObjectId,
-    ref:'Station'
-  }],
-  isActive: {
-    type: Boolean,
-    default: false
-  },
-  date: {
-    type: Date,
-    default: Date.now
-  },
-  avatar:{
-      type:String
-  }
+    name: {
+        type: String
+    },
+    username: {
+        type: String
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    apikey: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    stations: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Station'
+    }],
+    isActive: {
+        type: Boolean,
+        default: false
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    },
+    avatar: {
+        type: String
+    }
 });
 
 var User = (module.exports = mongoose.model("User", UserSchema));
 
+/*
 module.exports.getStations = (id)=> station.find({user:id}).populate('stations')
 
 module.exports.getByUsername=function(email,callback){
@@ -69,4 +70,4 @@ module.exports.create = function(newUser, callback) {
     });
   });
 };
-module.exports.comparePassword=bcrypt.compare
+module.exports.comparePassword=bcrypt.compare*/

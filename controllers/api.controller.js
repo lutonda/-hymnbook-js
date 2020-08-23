@@ -1,4 +1,5 @@
 var User = require("../models/user");
+var Hymn = require("../models/hymn");
 
 exports.index = function(req, res, next) {
     res.render("api", { title: "Hey", message: "Hello there!" });
@@ -6,12 +7,11 @@ exports.index = function(req, res, next) {
 
 exports.getAllSources = async function(req, res) {
 
-    var sources = await User.find()
-    res.status = 200
+    var hymn = await Hymn.find();
     res.json({
         status: 200,
         message: "success",
-        sources: sources
+        sources: hymn
     })
 
 };
