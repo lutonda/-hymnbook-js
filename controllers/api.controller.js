@@ -1,4 +1,4 @@
-var Source = require("../models/source");
+var User = require("../models/user");
 
 exports.index = function(req, res, next) {
     res.render("api", { title: "Hey", message: "Hello there!" });
@@ -6,7 +6,7 @@ exports.index = function(req, res, next) {
 
 exports.getAllSources = async function(req, res) {
 
-    var sources = await Source.find()
+    var sources = await User.find()
     res.status = 200
     res.json({
         status: 200,
