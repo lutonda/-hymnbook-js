@@ -2,16 +2,24 @@ var mongoose = require("mongoose");
 var bcrypt = require("bcryptjs");
 const uuidv5 = require("uuid/v5");
 
-const HymnSchema = new mongoose.Schema({
+const PartSchema = new mongoose.Schema({
     id: {
         type: Number
     },
-    typePart: [{
+    order: {
+        type: Number
+    },
+    text: {
+        type: String
+    },
+    typePart: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'TypePart'
-    }]
-    
+    },
+    hymn: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Hymn'
+    }
 })
 
-
-var Part = (module.exports = mongoose.model("Part", HymnSchema));
+var Part = (module.exports = mongoose.model("Part", PartSchema));

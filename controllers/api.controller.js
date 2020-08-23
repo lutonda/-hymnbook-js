@@ -1,17 +1,18 @@
 var User = require("../models/user");
 var Hymn = require("../models/hymn");
-
+var PartType = require("../models/typepart");
 exports.index = function(req, res, next) {
     res.render("api", { title: "Hey", message: "Hello there!" });
 };
 
 exports.getAllSources = async function(req, res) {
 
-    var hymn = await Hymn.find();
+    var partsTypes = await PartType.find();
+
     res.json({
         status: 200,
         message: "success",
-        sources: hymn
+        sources: partsTypes
     })
 
 };
