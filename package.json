@@ -1,0 +1,73 @@
+{
+    "name": "hymnbook",
+    "version": "1.0.0",
+    "description": "generic hymnbook in js",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lutonda/-hymnbook-js.git"
+    },
+    "keywords": [
+        "hymnbook",
+        "js",
+        "node"
+    ],
+    "author": "Sebastião Lutonda",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/lutonda/-hymnbook-js/issues"
+    },
+    "homepage": "https://github.com/lutonda/-hymnbook-js#readme",
+    "dependencies": {
+        "axios": "^0.19.2",
+        "bcryptjs": "^2.4.3",
+        "body-parser": "^1.18.3",
+        "cheerio": "^1.0.0-rc.3",
+        "connect-flash": "^0.1.1",
+        "cookie-parser": "^1.4.4",
+        "express": "^4.16.4",
+        "express-handlebars": "^3.0.2",
+        "express-session": "^1.15.6",
+        "express-validator": "^5.3.1",
+        "fs": "0.0.1-security",
+        "html-table-to-json": "^1.0.0",
+        "http": "0.0.0",
+        "jsonwebtoken": "^8.5.1",
+        "mongodb": "^3.1.13",
+        "mongoose": "^5.4.16",
+        "mongoose-autopopulate": "^0.12.1",
+        "mysql": "^2.16.0",
+        "mysql2": "^1.6.5",
+        "node-html-parser": "^1.2.15",
+        "node-rest-client": "^3.1.0",
+        "nodejs-base64": "^1.0.3",
+        "nodemailer": "^5.1.1",
+        "nodemailer-direct-transport": "^3.3.2",
+        "nodemailer-express-handlebars": "^3.0.0",
+        "passport": "^0.4.0",
+        "passport-github": "^1.1.0",
+        "passport-http": "^0.3.0",
+        "passport-local": "^1.0.0",
+        "path": "^0.12.7",
+        "pug": "^2.0.3",
+        "qrcode": "^1.3.3",
+        "sequelize": "^4.42.1",
+        "socket.io": "^2.2.0",
+        "socket.io-client": "^2.2.0",
+        "uuid": "^3.3.2",
+        "yarn": "^1.13.0"
+    },
+    "devDependencies": {
+        "babel-core": "7.0.0-bridge.0",
+        "babel-jest": "24.1.0",
+        "jest": "24.1.0",
+        "react-test-renderer": "16.6.3",
+        "sequelize-cli": "^5.4.0"
+    },
+    "jest": {
+        "preset": "react-native"
+    }
+}
