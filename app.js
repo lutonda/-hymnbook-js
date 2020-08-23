@@ -8,6 +8,7 @@ var express = require('express'),
 mongoose.connect(config.development,(err)=>{
     let t=err;
 });
+
 var db = mongoose.connection;
 
 // routes
