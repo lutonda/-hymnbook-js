@@ -5,14 +5,16 @@ var express = require('express'),
     express = require('express');
 
 //sect the mongoo connection string from config
-mongoose.connect(config.development,(err)=>{
-    let t=err;
+mongoose.connect(config.development, (err) => {
+    let t = err;
 });
 
 var db = mongoose.connection;
 
 // routes
-var apiRoute = require('./routes/api.route');
+var apiRoute = require('./routes/api.route'),
+    typePartRoute = require('./routes/typePart.route');
+
 
 // Init App
 var app = express();
@@ -23,5 +25,7 @@ server.listen(app.get('port'), function() {
     console.log('Listinig to port ' + app.get('port'));
 });
 
-app.use('/api', middleware.checkToken, apiRoute);
+app.use('/api/v1/', middleware.checkToken, apiRoute);
 
+
+app.use('/api/v1/type_part', middleware.checkToken, typePartRoute)
