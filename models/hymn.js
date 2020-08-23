@@ -20,7 +20,8 @@ const HymnSchema = new mongoose.Schema({
     parts: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Part'
-    }],
+    }]
+    
 })
 
 
