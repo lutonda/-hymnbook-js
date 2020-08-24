@@ -2,7 +2,7 @@ let Language = require('../models/language');
 
 exports.createOne = async (req, res) =>{
 
-    let lang = await Language.create({description: req.query.language.description});
+    let lang = await Language.create(req.body);
 
     res.json({
         status: 200,
@@ -12,8 +12,8 @@ exports.createOne = async (req, res) =>{
 }
 
 exports.updateOne = async (req, res) => {
-    let lang = await Language.find(req.query.id);
-    lang.description = req.query.lang.description;
+    let lang = await Language.findById(req.params.id);
+    lang.description = req.body.description;
     lang.save;
 
     res.json({
@@ -24,12 +24,13 @@ exports.updateOne = async (req, res) => {
 }
 
 exports.deleteOne = async (req, res) => {
-    let lang = await Language.find(req.query.id);
+    let lang = await Language.findById(req.params.id);
+        lang.remove();
 
     res.json({
         status: 200,
         message: "success",
-        data: lang
+        data: null
     })
 }
 
