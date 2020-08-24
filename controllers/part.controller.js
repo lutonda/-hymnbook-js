@@ -2,7 +2,7 @@ let Part = require('../models/part');
 
 exports.createOne = async (req, res) =>{
 
-    let part = await Part.create({description: req.query.part.description});
+    let part = await Part.create(req.body);
 
     res.json({
         status: 200,
@@ -12,8 +12,8 @@ exports.createOne = async (req, res) =>{
 }
 
 exports.updateOne = async (req, res) => {
-    let part = await Part.find(req.query.id);
-    part.description = req.query.part.description;
+    let part = await Part.findById(req.params.id);
+    part.description = req.body.description;
     part.save;
 
     res.json({
@@ -24,12 +24,13 @@ exports.updateOne = async (req, res) => {
 }
 
 exports.deleteOne = async (req, res) => {
-    let part = await Part.find(req.query.id);
+    let part = await Part.findById(req.params.id);
+        part.remove();
 
     res.json({
         status: 200,
         message: "success",
-        data: part
+        data: null
     })
 }
 
