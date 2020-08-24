@@ -1,12 +1,12 @@
 var Author = require('../models/author');
 
 exports.createOne = async (req, res) =>{
-    let author = await Author.create(req.query.author.description);
+    let author = await Author.create(req.params.author.description);
 
     res.json({
         status: 200,
         message: "success",
-        sources: author
+        data: author
     })
 }
 
@@ -19,7 +19,7 @@ exports.upadateOne = async (req, res) =>{
     res.json({
         status: 200,
         message: "success",
-        sources: author
+        data: author
     })
 }
 
@@ -29,7 +29,7 @@ exports.findOneBy = async (req, res) =>{
     res.json({
         status: 200,
         message: "success",
-        sources: author
+        data: author
     })
 }
 
@@ -39,7 +39,7 @@ exports.findAllBy = async (req, res) =>{
     res.json({
         status: 200,
         message: "success",
-        sources: author
+        data: author
     })
 }
 
@@ -49,6 +49,6 @@ exports.deleteOne = async (req, res) =>{
     res.json({
         status: 200,
         message: "success",
-        sources: author
+        data: author
     })
 }
