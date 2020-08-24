@@ -7,7 +7,7 @@ exports.createOne = async(res, req) => {
     res.json({
         status: 200,
         message: "success",
-        sources: types
+        data: types
     })
 }
 
@@ -20,7 +20,7 @@ exports.updateOne = async(req, res) => {
     res.json({
         status: 200,
         message: "success",
-        sources: types
+        data: types
     })
 }
 
@@ -31,7 +31,7 @@ exports.findAllBy = async(req, res) => {
     res.json({
         status: 200,
         message: "success",
-        sources: types
+        data: types
     })
 }
 
@@ -42,7 +42,7 @@ exports.findOneBy = async(req, res) => {
     res.json({
         status: 200,
         message: "success",
-        sources: types
+        data: types
     })
 }
 
@@ -53,6 +53,6 @@ exports.deleteOne = async(req, res) => {
     res.json({
         status: 200,
         message: "success",
-        sources: types
+        data: types
     })
 }
