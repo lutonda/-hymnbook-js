@@ -13,9 +13,11 @@ var db = mongoose.connection;
 
 // routes
 var apiRoute = require('./routes/api.route'),
-    typePartRoute = require('./routes/typePart.route');
-
-var authorRoute = require('./routes/author.route');
+    typePartRoute = require('./routes/typePart.route'), 
+    authorRoute = require('./routes/author.route'),
+    hymnRoute = require('./routes/hymn.route'),
+    languageRoute = require('./routes/language.route'),
+    partRoute = require('./routes/part.route');
 
 
 // Init App
@@ -32,3 +34,9 @@ app.use('/api/v1/', middleware.checkToken, apiRoute);
 app.use('/api/v1/type_part', middleware.checkToken, typePartRoute)
 
 app.use('/api/v1/author', middleware.checkToken, authorRoute);
+
+app.use('/api/v1/hymn', middleware.checkToken, hymnRoute);
+
+app.use('/api/v1/language', middleware.checkToken, languageRoute);
+
+app.use('/api/v1/part', middleware.checkToken, partRoute);
