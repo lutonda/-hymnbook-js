@@ -2,7 +2,7 @@ let Hymn = require('../models/hymn');
 
 exports.createOne = async (req, res) =>{
 
-    let hymn = await Hymn.create({description: req.query.hymn.description});
+    let hymn = await Hymn.create(req.body);
 
     res.json({
         status: 200,
@@ -12,8 +12,8 @@ exports.createOne = async (req, res) =>{
 }
 
 exports.updateOne = async (req, res) => {
-    let hymn = await Hymn.find(req.query.id);
-    hymn.description = req.query.hymn.description;
+    let hymn = await Hymn.findById(req.params.id);
+    hymn.description = req.body.description;
     hymn.save;
 
     res.json({
@@ -24,12 +24,13 @@ exports.updateOne = async (req, res) => {
 }
 
 exports.deleteOne = async (req, res) => {
-    let hymn = await Hymn.find(req.query.id);
+    let hymn = await Hymn.findById(req.params.id);
+        hymn.remove();
     
     res.json({
         status: 200,
         message: "success",
-        data: hymn
+        data: null
     })
 }
 
