@@ -2,9 +2,7 @@ var Author = require('../models/author');
 
 exports.createOne = async(req, res) => {
 
-
-    let author = req.params;
-    //await Author.create(req.params);
+    let author = await Author.create(req.body);
 
     res.json({
         status: 200,
@@ -15,8 +13,9 @@ exports.createOne = async(req, res) => {
 
 
 exports.upadateOne = async(req, res) => {
-    let author = await Author.find(req.query.id)
-    author.description = req.query.author.description;
+
+    let author = await Author.findById(req.params.id);
+    author.description = req.body.description;
     author.save;
 
     res.json({
@@ -47,11 +46,12 @@ exports.findAllBy = async(req, res) => {
 }
 
 exports.deleteOne = async(req, res) => {
-    let author = await Author.find(req.query.id);
+    let author = await Author.findById(req.params.id);
+    author.remove()
 
     res.json({
         status: 200,
         message: "success",
-        sources: author
+        sources: null
     })
 }
