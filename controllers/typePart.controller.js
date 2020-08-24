@@ -2,7 +2,7 @@ let TypePart = require('../models/typePart');
 
 exports.createOne = async(res, req) => {
 
-    let types = await TypePart.create({ description: req.query.typePart.description });
+    let types = await TypePart.create(req.body);
 
     res.json({
         status: 200,
@@ -13,8 +13,8 @@ exports.createOne = async(res, req) => {
 
 exports.updateOne = async(req, res) => {
 
-    let types = await TypePart.find(req.query.id);
-    types.description = req.query.typePart.description;
+    let types = await TypePart.findById(req.params.id);
+    types.description = req.body.description;
     types.save;
 
     res.json({
@@ -48,11 +48,12 @@ exports.findOneBy = async(req, res) => {
 
 exports.deleteOne = async(req, res) => {
 
-    let types = await TypePart.find(req.query.id);
+    let types = await TypePart.find(req.params.id);
+        types.remove();
 
     res.json({
         status: 200,
         message: "success",
-        data: types
+        data: null
     })
 }
