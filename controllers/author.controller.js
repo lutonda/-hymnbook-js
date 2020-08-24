@@ -1,7 +1,10 @@
 var Author = require('../models/author');
 
-exports.createOne = async (req, res) =>{
-    let author = await Author.create(req.query.author.description);
+exports.createOne = async(req, res) => {
+
+
+    let author = req.params;
+    //await Author.create(req.params);
 
     res.json({
         status: 200,
@@ -11,7 +14,7 @@ exports.createOne = async (req, res) =>{
 }
 
 
-exports.upadateOne = async (req, res) =>{
+exports.upadateOne = async(req, res) => {
     let author = await Author.find(req.query.id)
     author.description = req.query.author.description;
     author.save;
@@ -23,7 +26,7 @@ exports.upadateOne = async (req, res) =>{
     })
 }
 
-exports.findOneBy = async (req, res) =>{
+exports.findOneBy = async(req, res) => {
     let author = await Author.findById(req.params.id);
 
     res.json({
@@ -33,7 +36,7 @@ exports.findOneBy = async (req, res) =>{
     })
 }
 
-exports.findAllBy = async (req, res) =>{
+exports.findAllBy = async(req, res) => {
     let author = await Author.find({});
 
     res.json({
@@ -43,7 +46,7 @@ exports.findAllBy = async (req, res) =>{
     })
 }
 
-exports.deleteOne = async (req, res) =>{
+exports.deleteOne = async(req, res) => {
     let author = await Author.find(req.query.id);
 
     res.json({

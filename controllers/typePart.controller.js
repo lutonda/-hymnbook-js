@@ -2,7 +2,7 @@ let TypePart = require('../models/typePart');
 
 exports.createOne = async(res, req) => {
 
-    let types = await TypePart.create({ description: req.query.typePart.description});
+    let types = await TypePart.create({ description: req.query.typePart.description });
 
     res.json({
         status: 200,
