@@ -7,7 +7,8 @@ const AuthorSchema = new mongoose.Schema({
         type: Number
     },
     description: {
-        type: String
+        type: String,
+        require:true
     },
     hymns: [{
         type: mongoose.Schema.Types.ObjectId,

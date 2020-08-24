@@ -15,6 +15,8 @@ var db = mongoose.connection;
 var apiRoute = require('./routes/api.route'),
     typePartRoute = require('./routes/typePart.route');
 
+var authorRoute = require('./routes/author.route');
+
 
 // Init App
 var app = express();
@@ -27,5 +29,6 @@ server.listen(app.get('port'), function() {
 
 app.use('/api/v1/', middleware.checkToken, apiRoute);
 
-
 app.use('/api/v1/type_part', middleware.checkToken, typePartRoute)
+
+app.use('/api/v1/author', middleware.checkToken, authorRoute);
