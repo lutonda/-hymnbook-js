@@ -1,6 +1,8 @@
 var User = require("../models/user");
 var Hymn = require("../models/hymn");
-var PartType = require("../models/typepart");
+var PartType = require("../models/typePart");
+
+
 exports.index = function(req, res, next) {
     res.render("api", { title: "Hey", message: "Hello there!" });
 };
