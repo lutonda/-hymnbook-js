@@ -1,9 +1,8 @@
-let TypePart = require('../models/typepart');
-
+let TypePart = require('../models/typePart');
 
 exports.createOne = async(res, req) => {
 
-    let types = await TypePart.create({ description: req.query.typePart.description });
+    let types = await TypePart.create({ description: req.query.typePart.description});
 
     res.json({
         status: 200,
@@ -16,7 +15,7 @@ exports.updateOne = async(req, res) => {
 
     let types = await TypePart.find(req.query.id);
     types.description = req.query.typePart.description;
-    types.save
+    types.save;
 
     res.json({
         status: 200,
@@ -24,7 +23,6 @@ exports.updateOne = async(req, res) => {
         sources: types
     })
 }
-
 
 exports.findAllBy = async(req, res) => {
 
