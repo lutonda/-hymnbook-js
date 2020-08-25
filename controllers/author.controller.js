@@ -27,7 +27,7 @@ exports.upadateOne = async(req, res) => {
 
 exports.findOneBy = async(req, res) => {
 
-    let author = await Author.findById(req.params.id, (err, data) => {
+    await Author.findById(req.params.id, (err, data) => {
         res.json({
             status: 200,
             message: "success",
@@ -37,12 +37,12 @@ exports.findOneBy = async(req, res) => {
 }
 
 exports.findAllBy = async(req, res) => {
-    let author = await Author.find({});
+    let authors = await Author.find({});
 
     res.json({
         status: 200,
         message: "success",
-        sources: author
+        sources: authors
     })
 }
 
@@ -52,7 +52,6 @@ exports.deleteOne = async(req, res) => {
 
     res.json({
         status: 200,
-        message: "success",
-        sources: null
+        message: "success"
     })
 }

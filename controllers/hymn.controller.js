@@ -29,8 +29,7 @@ exports.deleteOne = async(req, res) => {
 
     res.json({
         status: 200,
-        message: "success",
-        data: null
+        message: "success"
     })
 }
 
