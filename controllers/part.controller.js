@@ -11,36 +11,45 @@ exports.createOne = async(req, res) => {
 }
 
 exports.updateOne = async(req, res) => {
-    let part = await Part.findById(req.params.id);
-    part.text = req.body.text;
-    part.order = req.body.order;
-    part.save();
+    let part = await Part.findById(req.params.id, (err, data) => {
 
-    res.json({
-        status: 200,
-        message: "success",
-        data: part
-    })
+        part.text = req.body.text;
+        part.order = req.body.order;
+        part.save();
+
+        res.json({
+            status: 200,
+            message: "success",
+            data: part
+        })
+    });
+    
 }
 
 exports.deleteOne = async(req, res) => {
-    let part = await Part.findById(req.params.id);
-    part.remove();
+    let part = await Part.findById(req.params.id, (err, data) => {
 
-    res.json({
-        status: 200,
-        message: "success"
-    })
+        part.remove();
+
+        res.json({
+            status: 200,
+            message: "success"
+        })
+    });
+   
 }
 
 exports.findOneBy = async(req, res) => {
-    let part = await Part.findById(req.params.id);
+    let part = await Part.findById(req.params.id, (err, data) => {
+        res.json({
+            status: 200,
+            message: "success",
+            data: part
+        })
+       
+    });
 
-    res.json({
-        status: 200,
-        message: "success",
-        data: part
-    })
+   
 }
 
 exports.findAllBy = async(req, res) => {

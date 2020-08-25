@@ -15,16 +15,19 @@ exports.createOne = async(req, res) => {
 
 exports.upadateOne = async(req, res) => {
 
-    let author = await Author.findByIdAndUpdate(req.params.id);
-    author.description = req.body.description;
-    author.name = req.body.name;
-    author.save();
+    let author = await Author.findByIdAndUpdate(req.params.id, (err, data) => {
+       
+        author.description = req.body.description;
+        author.name = req.body.name;
+        author.save();
 
-    res.json({
-        status: 200,
-        message: "success",
-        sources: author
-    })
+        res.json({
+            status: 200,
+            message: "sucess",
+            sources: data || err
+        });
+       
+    });
 }
 
 exports.findOneBy = async(req, res) => {
@@ -36,7 +39,6 @@ exports.findOneBy = async(req, res) => {
             message: "sucess",
             sources: data || err
         });
-
        
     });
 }
@@ -52,11 +54,18 @@ exports.findAllBy = async(req, res) => {
 }
 
 exports.deleteOne = async(req, res) => {
-    let author = await Author.findById(req.params.id);
-    author.remove()
 
-    res.json({
-        status: 200,
-        message: "success"
-    })
+    let author = await Author.findById(req.params.id, (err, data) => {
+
+        author.remove()
+
+        res.json({
+            status: 200,
+            message: "sucess",
+            sources: data || err
+        });
+
+    });
+
+    
 }

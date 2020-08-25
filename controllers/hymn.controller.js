@@ -1,5 +1,7 @@
 let Hymn = require('../models/hymn');
 let Author = require('../models/author');
+let Language = require('../models/language');
+
 
 exports.createOne = async(req, res) => {
 
@@ -13,31 +15,42 @@ exports.createOne = async(req, res) => {
 }
 
 exports.updateOne = async(req, res) => {
-    let hymn = await Hymn.findById(req.params.id);
-    hymn.number = req.body.number;
-    hymn.title = req.body.title;
-    hymn.author = await Author.findById(req.body.author.id)
-    hymn.save();
 
-    res.json({
-        status: 200,
-        message: "success",
-        data: hymn
-    })
+    let hymn = await Hymn.findById(req.params.id,  async (err, data) => {
+
+        hymn.number = req.body.number;
+        hymn.title = req.body.title;
+        hymn.author = await Author.findById(req.body.author.id)
+        hymn.Language = await Language.findById(req.body.author.id)
+        hymn.save();
+    
+        res.json({
+            status: 200,
+            message: "success",
+            data: hymn
+        });
+
+    });
+    
 }
 
 exports.deleteOne = async(req, res) => {
-    let hymn = await Hymn.findById(req.params.id);
-    hymn.remove();
+    let hymn = await Hymn.findById(req.params.id,  (err, data) => {
 
-    res.json({
-        status: 200,
-        message: "success"
-    })
+        hymn.remove()
+
+        res.json({
+            status: 200,
+            message: "sucess",
+            sources: data || err
+        });
+
+    });
+
 }
 
 exports.findOneBy = async(req, res) => {
-    let hymn = await Hymn.findById(req.params.id);
+    let hymn = Hymn.findById(req.params.id).populate("hymns");
 
     res.json({
         status: 200,
