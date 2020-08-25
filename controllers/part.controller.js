@@ -1,7 +1,6 @@
 let Part = require('../models/part');
 
-exports.createOne = async (req, res) =>{
-
+exports.createOne = async(req, res) => {
     let part = await Part.create(req.body);
 
     res.json({
@@ -11,7 +10,7 @@ exports.createOne = async (req, res) =>{
     })
 }
 
-exports.updateOne = async (req, res) => {
+exports.updateOne = async(req, res) => {
     let part = await Part.findById(req.params.id);
     part.text = req.body.text;
     part.order = req.body.order;
@@ -24,18 +23,17 @@ exports.updateOne = async (req, res) => {
     })
 }
 
-exports.deleteOne = async (req, res) => {
+exports.deleteOne = async(req, res) => {
     let part = await Part.findById(req.params.id);
-        part.remove();
+    part.remove();
 
     res.json({
         status: 200,
-        message: "success",
-        data: null
+        message: "success"
     })
 }
 
-exports.findOneBy = async (req, res) =>{
+exports.findOneBy = async(req, res) => {
     let part = await Part.findById(req.params.id);
 
     res.json({
@@ -45,12 +43,12 @@ exports.findOneBy = async (req, res) =>{
     })
 }
 
-exports.findAllBy = async (req, res) =>{
-    let part = await Part.find({});
+exports.findAllBy = async(req, res) => {
+    let parts = await Part.find({});
 
     res.json({
         status: 200,
         message: "success",
-        data: part
+        data: parts
     })
 }

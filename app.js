@@ -4,14 +4,6 @@ var express = require('express'),
     middleware = require('./config/middleware'),
     express = require('express'),
     bodyParser = require('body-parser');
-
-//sect the mongoo connection string from config
-mongoose.connect(config.development, (err) => {
-    let t = err;
-});
-
-var db = mongoose.connection;
-
 // routes
 var apiRoute = require('./routes/api.route'),
     typePartRoute = require('./routes/typePart.route'),
@@ -20,16 +12,16 @@ var apiRoute = require('./routes/api.route'),
     languageRoute = require('./routes/language.route'),
     partRoute = require('./routes/part.route');
 
+//sect the mongoo connection string from config
+mongoose.connect(config.development, (err) => {
+    let t = err;
+});
+var db = mongoose.connection;
+
 
 // Init App
 var app = express();
 var server = require("http").Server(app);
-
-app.set('port', (process.env.PORT || 8800));
-server.listen(app.get('port'), function() {
-    console.log('Listinig to port ' + app.get('port'));
-});
-
 
 app.use(bodyParser.json());
 
@@ -43,4 +35,11 @@ app.use('/api/v1/hymns', middleware.checkToken, hymnRoute);
 
 app.use('/api/v1/languages', middleware.checkToken, languageRoute);
 
-app.use('/api/v1/partsW', middleware.checkToken, partRoute);
+app.use('/api/v1/part', middleware.checkToken, partRoute);
+
+
+
+app.set('port', (process.env.PORT || 8800));
+server.listen(app.get('port'), function() {
+    console.log('Listinig to port ' + app.get('port'));
+});
