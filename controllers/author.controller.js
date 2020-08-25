@@ -26,13 +26,14 @@ exports.upadateOne = async(req, res) => {
 }
 
 exports.findOneBy = async(req, res) => {
-    let author = await Author.findById(req.params.id);
 
-    res.json({
-        status: 200,
-        message: "success",
-        sources: author
-    })
+    let author = await Author.findById(req.params.id, (err, data) => {
+        res.json({
+            status: 200,
+            message: "success",
+            sources: data || err
+        })
+    });
 }
 
 exports.findAllBy = async(req, res) => {
