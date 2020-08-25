@@ -6,7 +6,7 @@ let Language = require('../models/language');
 exports.createOne = async(req, res) => {
 
     let hymn = await Hymn.create(req.body);
-
+    
     res.json({
         status: 200,
         message: "success",

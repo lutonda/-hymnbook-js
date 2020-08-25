@@ -1,20 +1,30 @@
 let Part = require('../models/part');
+let Hymn = require('../models/hymn');
+let TypePart = require('../models/typePart')
+
+const { hashSync } = require('bcryptjs');
 
 exports.createOne = async(req, res) => {
-    let part = await Part.create(req.body);
+    
+        req.body.hymn = await Hymn.findById(req.body.hymn.id);
 
-    res.json({
-        status: 200,
-        message: "success",
-        data: part
-    })
+        let part = await Part.create(req.body);
+        
+        res.json({
+            status: 200,
+            message: "success",
+            data: part
+        });
 }
 
 exports.updateOne = async(req, res) => {
-    let part = await Part.findById(req.params.id, (err, data) => {
+
+
+    let part = await Part.findById(req.params.id, async(err, data) => {
 
         part.text = req.body.text;
         part.order = req.body.order;
+        part.typePart = await TypePart.findById(req.body.typePart.id);
         part.save();
 
         res.json({
@@ -28,7 +38,6 @@ exports.updateOne = async(req, res) => {
 
 exports.deleteOne = async(req, res) => {
     let part = await Part.findById(req.params.id, (err, data) => {
-
         part.remove();
 
         res.json({

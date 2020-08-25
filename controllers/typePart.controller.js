@@ -1,11 +1,8 @@
 let TypePart = require('../models/typePart');
 
 exports.createOne = async(req, res) => {
-<<<<<<< HEAD
-    let typePart = await TypePart.create(req.body, (err, data)=>{
-=======
+
     let typePart = await TypePart.create(req.body, (err, data) => {
->>>>>>> 179e368b7cfe6f144320f1f919f47bd068347601
 
         res.json({
             status: 200,
@@ -17,8 +14,8 @@ exports.createOne = async(req, res) => {
 }
 
 exports.updateOne = async(req, res) => {
-    let typePart = await TypePart.findById(req.params.id, (err, data) => {
 
+    let typePart = await TypePart.findById(req.params.id, (err, data) => {
         typePart.description = req.body.description;
         typePart.save;
 
