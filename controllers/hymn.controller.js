@@ -1,4 +1,5 @@
 let Hymn = require('../models/hymn');
+let Author = require('../models/author');
 
 exports.createOne = async(req, res) => {
 
@@ -13,8 +14,10 @@ exports.createOne = async(req, res) => {
 
 exports.updateOne = async(req, res) => {
     let hymn = await Hymn.findById(req.params.id);
-    hymn.description = req.body.description;
-    hymn.save;
+    hymn.number = req.body.number;
+    hymn.title = req.body.title;
+    hymn.author = await Author.findById(req.body.author.id)
+    hymn.save();
 
     res.json({
         status: 200,

@@ -19,6 +19,10 @@ mongoose.connect(config.development, (err) => {
 var db = mongoose.connection;
 
 
+// Init App
+var app = express();
+var server = require("http").Server(app);
+
 app.use(bodyParser.json());
 app.use('/api/v1/', middleware.checkToken, apiRoute);
 
@@ -33,9 +37,6 @@ app.use('/api/v1/language', middleware.checkToken, languageRoute);
 app.use('/api/v1/part', middleware.checkToken, partRoute);
 
 
-// Init App
-var app = express();
-var server = require("http").Server(app);
 
 app.set('port', (process.env.PORT || 8800));
 server.listen(app.get('port'), function() {
