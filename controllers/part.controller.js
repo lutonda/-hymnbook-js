@@ -13,8 +13,9 @@ exports.createOne = async (req, res) =>{
 
 exports.updateOne = async (req, res) => {
     let part = await Part.findById(req.params.id);
-    part.description = req.body.description;
-    part.save;
+    part.text = req.body.text;
+    part.order = req.body.order;
+    part.save();
 
     res.json({
         status: 200,

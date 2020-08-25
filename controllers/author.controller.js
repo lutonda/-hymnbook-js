@@ -16,7 +16,7 @@ exports.upadateOne = async(req, res) => {
 
     let author = await Author.findById(req.params.id);
     author.description = req.body.description;
-    author.save;
+    author.save();
 
     res.json({
         status: 200,

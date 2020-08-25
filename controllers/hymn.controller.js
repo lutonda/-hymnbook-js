@@ -13,8 +13,8 @@ exports.createOne = async (req, res) =>{
 
 exports.updateOne = async (req, res) => {
     let hymn = await Hymn.findById(req.params.id);
-    hymn.description = req.body.description;
-    hymn.save;
+    hymn.title = req.body.title;
+    hymn.save();
 
     res.json({
         status: 200,

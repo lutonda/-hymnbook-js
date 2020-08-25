@@ -15,7 +15,7 @@ exports.updateOne = async(req, res) => {
 
     let types = await TypePart.findById(req.params.id);
     types.description = req.body.description;
-    types.save;
+    types.save();
 
     res.json({
         status: 200,

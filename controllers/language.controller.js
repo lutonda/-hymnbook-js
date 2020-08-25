@@ -14,7 +14,8 @@ exports.createOne = async (req, res) =>{
 exports.updateOne = async (req, res) => {
     let lang = await Language.findById(req.params.id);
     lang.description = req.body.description;
-    lang.save;
+    lang.code = req.body.code;
+    lang.save();
 
     res.json({
         status: 200,

@@ -30,15 +30,17 @@ server.listen(app.get('port'), function() {
     console.log('Listinig to port ' + app.get('port'));
 });
 
+
 app.use(bodyParser.json());
+
 app.use('/api/v1/', middleware.checkToken, apiRoute);
 
-app.use('/api/v1/type_part', middleware.checkToken, typePartRoute)
+app.use('/api/v1/type_parts', middleware.checkToken, typePartRoute)
 
-app.use('/api/v1/author', middleware.checkToken, authorRoute);
+app.use('/api/v1/authors', middleware.checkToken, authorRoute);
 
-app.use('/api/v1/hymn', middleware.checkToken, hymnRoute);
+app.use('/api/v1/hymns', middleware.checkToken, hymnRoute);
 
-app.use('/api/v1/language', middleware.checkToken, languageRoute);
+app.use('/api/v1/languages', middleware.checkToken, languageRoute);
 
-app.use('/api/v1/part', middleware.checkToken, partRoute);
+app.use('/api/v1/partsW', middleware.checkToken, partRoute);
