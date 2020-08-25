@@ -1,7 +1,7 @@
 let TypePart = require('../models/typePart');
 
-exports.createOne = async(res, req) => {
-    let typePart = await TypePart.create(req.body, (err, data)=>{
+exports.createOne = async(req, res) => {
+    let typePart = await TypePart.create(req.body, (err, data) => {
 
         res.json({
             status: 200,
@@ -24,7 +24,7 @@ exports.updateOne = async(req, res) => {
             data: data || err
         })
     });
-    
+
 }
 
 exports.findAllBy = async(req, res) => {
@@ -47,7 +47,7 @@ exports.findOneBy = async(req, res) => {
         });
     });
 
-    
+
 }
 
 exports.deleteOne = async(req, res) => {
@@ -62,5 +62,5 @@ exports.deleteOne = async(req, res) => {
             data: null
         })
     });
-    
+
 }
