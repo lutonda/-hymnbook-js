@@ -11,35 +11,49 @@ exports.createOne = async(req, res) => {
 }
 
 exports.updateOne = async(req, res) => {
-    let language = await Language.findById(req.params.id);
-    language.description = req.body.description;
-    language.save;
+    let language = await Language.findById(req.params.id, (err, data) => {
 
-    res.json({
-        status: 200,
-        message: "success",
-        data: language
-    })
+        language.description = req.body.description;
+        language.save;
+    
+        res.json({
+            status: 200,
+            message: "success",
+            data: data || err
+        });
+       
+    });
+    
 }
 
 exports.deleteOne = async(req, res) => {
-    let language = await Language.findById(req.params.id);
-    language.remove();
+    let language = await Language.findById(req.params.id, (err, data) => {
 
-    res.json({
-        status: 200,
-        message: "success"
-    })
+        language.remove();
+
+        res.json({
+            status: 200,
+            message: "success",
+            data: null
+            
+        });
+       
+    });
+    
 }
 
 exports.findOneBy = async(req, res) => {
-    let language = await Language.findById(req.params.id);
+    let language = await Language.findById(req.params.id, (err, data) => {
 
-    res.json({
-        status: 200,
-        message: "success",
-        data: language
-    })
+        res.json({
+            status: 200,
+            message: "success",
+            data: data || err
+        });
+       
+    });
+
+   
 }
 
 exports.findAllBy = async(req, res) => {

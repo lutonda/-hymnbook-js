@@ -11,15 +11,18 @@ exports.createOne = async(res, req) => {
 }
 
 exports.updateOne = async(req, res) => {
-    let typePart = await TypePart.findById(req.params.id);
-    typePart.description = req.body.description;
-    typePart.save;
+    let typePart = await TypePart.findById(req.params.id, (err, data) => {
 
-    res.json({
-        status: 200,
-        message: "success",
-        data: typePart
-    })
+        typePart.description = req.body.description;
+        typePart.save;
+
+        res.json({
+            status: 200,
+            message: "success",
+            data: data || err
+        })
+    });
+    
 }
 
 exports.findAllBy = async(req, res) => {
@@ -33,23 +36,29 @@ exports.findAllBy = async(req, res) => {
 }
 
 exports.findOneBy = async(req, res) => {
-    let typePart = await TypePart.findById(req.params.id);
+    let typePart = await TypePart.findById(req.params.id, (err, data) => {
 
-    res.json({
-        status: 200,
-        message: "success",
-        data: typePart
-    })
+        res.json({
+            status: 200,
+            message: "success",
+            data: data || err
+        });
+    });
+
+    
 }
 
 exports.deleteOne = async(req, res) => {
 
-    let types = await TypePart.find(req.params.id);
-    types.remove();
+    let types = await TypePart.find(req.params.id, (err, data) => {
 
-    res.json({
-        status: 200,
-        message: "success",
-        data: null
-    })
+        types.remove();
+
+        res.json({
+            status: 200,
+            message: "success",
+            data: null
+        })
+    });
+    
 }

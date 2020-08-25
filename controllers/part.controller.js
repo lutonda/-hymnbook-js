@@ -11,35 +11,48 @@ exports.createOne = async(req, res) => {
 }
 
 exports.updateOne = async(req, res) => {
-    let part = await Part.findById(req.params.id);
-    part.description = req.body.description;
-    part.save;
+    let part = await Part.findById(req.params.id, (err, data) => {
 
-    res.json({
-        status: 200,
-        message: "success",
-        data: part
-    })
+        part.text = req.body.text;
+        part.order = req.body.order;
+        part.save();
+
+        res.json({
+            status: 200,
+            message: "success",
+            data: data || err
+        })
+    });
+    
 }
 
 exports.deleteOne = async(req, res) => {
-    let part = await Part.findById(req.params.id);
-    part.remove();
+    let part = await Part.findById(req.params.id, (err, data) => {
 
-    res.json({
-        status: 200,
-        message: "success"
-    })
+        part.remove();
+
+        res.json({
+            status: 200,
+            message: "sucess",
+            data: null
+            
+        });
+
+    });
+   
 }
 
 exports.findOneBy = async(req, res) => {
-    let part = await Part.findById(req.params.id);
+    let part = await Part.findById(req.params.id, (err, data) => {
+        res.json({
+            status: 200,
+            message: "success",
+            data: data || err
+        });
+       
+    });
 
-    res.json({
-        status: 200,
-        message: "success",
-        data: part
-    })
+   
 }
 
 exports.findAllBy = async(req, res) => {
@@ -49,5 +62,5 @@ exports.findAllBy = async(req, res) => {
         status: 200,
         message: "success",
         data: parts
-    })
+    });
 }
