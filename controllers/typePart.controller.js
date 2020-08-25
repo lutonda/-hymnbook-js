@@ -1,55 +1,51 @@
 let TypePart = require('../models/typePart');
 
 exports.createOne = async(res, req) => {
-
-    let types = await TypePart.create(req.body);
+    let typePart = await TypePart.create(req.body);
 
     res.json({
         status: 200,
         message: "success",
-        data: types
+        data: typePart
     })
 }
 
 exports.updateOne = async(req, res) => {
-
-    let types = await TypePart.findById(req.params.id);
-    types.description = req.body.description;
-    types.save;
+    let typePart = await TypePart.findById(req.params.id);
+    typePart.description = req.body.description;
+    typePart.save;
 
     res.json({
         status: 200,
         message: "success",
-        data: types
+        data: typePart
     })
 }
 
 exports.findAllBy = async(req, res) => {
-
-    let types = await TypePart.find({});
+    let typeParts = await TypePart.find({});
 
     res.json({
         status: 200,
         message: "success",
-        data: types
+        data: typeParts
     })
 }
 
 exports.findOneBy = async(req, res) => {
-
-    let types = await TypePart.findById(req.params.id);
+    let typePart = await TypePart.findById(req.params.id);
 
     res.json({
         status: 200,
         message: "success",
-        data: types
+        data: typePart
     })
 }
 
 exports.deleteOne = async(req, res) => {
 
     let types = await TypePart.find(req.params.id);
-        types.remove();
+    types.remove();
 
     res.json({
         status: 200,
