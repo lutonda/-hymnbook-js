@@ -6,13 +6,13 @@ const HymnSchema = new mongoose.Schema({
 
     title: {
         type: String,
-        require:true,
-        unique:true
+        require: true,
+        unique: true
     },
     number: {
         type: Number,
         require: true,
-        unique:true
+        unique: true
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,
@@ -26,8 +26,12 @@ const HymnSchema = new mongoose.Schema({
     parts: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Part'
-    }]
-    
+    }],
+    date: {
+        type: Date,
+        default: Date.now
+    }
+
 })
 
 var Hymn = (module.exports = mongoose.model("Hymn", HymnSchema));

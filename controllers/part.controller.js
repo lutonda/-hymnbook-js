@@ -23,7 +23,7 @@ exports.updateOne = async(req, res) => {
             data: data || err
         })
     });
-    
+
 }
 
 exports.deleteOne = async(req, res) => {
@@ -35,11 +35,11 @@ exports.deleteOne = async(req, res) => {
             status: 200,
             message: "sucess",
             data: null
-            
+
         });
 
     });
-   
+
 }
 
 exports.findOneBy = async(req, res) => {
@@ -49,14 +49,14 @@ exports.findOneBy = async(req, res) => {
             message: "success",
             data: data || err
         });
-       
-    });
 
-   
+    }).populate('hymn');
+
+
 }
 
 exports.findAllBy = async(req, res) => {
-    let parts = await Part.find({});
+    let parts = await Part.find({}).populate('hymn');
 
     res.json({
         status: 200,
