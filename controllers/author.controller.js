@@ -62,7 +62,8 @@ exports.deleteOne = async(req, res) => {
         res.json({
             status: 200,
             message: "sucess",
-            sources: data || err
+            data: null
+            
         });
 
     });

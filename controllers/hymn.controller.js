@@ -27,7 +27,7 @@ exports.updateOne = async(req, res) => {
         res.json({
             status: 200,
             message: "success",
-            data: hymn
+            data: data || err
         });
 
     });
@@ -42,7 +42,8 @@ exports.deleteOne = async(req, res) => {
         res.json({
             status: 200,
             message: "sucess",
-            sources: data || err
+            data: null
+            
         });
 
     });
@@ -50,13 +51,17 @@ exports.deleteOne = async(req, res) => {
 }
 
 exports.findOneBy = async(req, res) => {
-    let hymn = Hymn.findById(req.params.id).populate("hymns");
 
-    res.json({
-        status: 200,
-        message: "success",
-        data: hymn
-    })
+    let hymn = Hymn.findById(req.params.id, (err, data)=>{
+
+        res.json({
+            status: 200,
+            message: "success",
+            data: data || err
+        });
+    });
+
+   
 }
 
 exports.findAllBy = async(req, res) => {

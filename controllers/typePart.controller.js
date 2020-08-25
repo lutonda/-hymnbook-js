@@ -19,7 +19,7 @@ exports.updateOne = async(req, res) => {
         res.json({
             status: 200,
             message: "success",
-            data: typePart
+            data: data || err
         })
     });
     
@@ -41,8 +41,8 @@ exports.findOneBy = async(req, res) => {
         res.json({
             status: 200,
             message: "success",
-            data: typePart
-        })
+            data: data || err
+        });
     });
 
     

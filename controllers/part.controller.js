@@ -20,7 +20,7 @@ exports.updateOne = async(req, res) => {
         res.json({
             status: 200,
             message: "success",
-            data: part
+            data: data || err
         })
     });
     
@@ -33,8 +33,11 @@ exports.deleteOne = async(req, res) => {
 
         res.json({
             status: 200,
-            message: "success"
-        })
+            message: "sucess",
+            data: null
+            
+        });
+
     });
    
 }
@@ -44,8 +47,8 @@ exports.findOneBy = async(req, res) => {
         res.json({
             status: 200,
             message: "success",
-            data: part
-        })
+            data: data || err
+        });
        
     });
 
@@ -59,5 +62,5 @@ exports.findAllBy = async(req, res) => {
         status: 200,
         message: "success",
         data: parts
-    })
+    });
 }
