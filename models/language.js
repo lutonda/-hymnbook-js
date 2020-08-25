@@ -7,7 +7,14 @@ const LanguageSchema = new mongoose.Schema({
         type: Number
     },
     description: {
-        type: String
+        type: String,
+        require:true,
+        unique:true
+    },
+    code:{
+        type: String,
+        require:true,
+        unique:true
     },
     hymns: [{
         type: mongoose.Schema.Types.ObjectId,
