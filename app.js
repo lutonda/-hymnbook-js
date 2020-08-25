@@ -35,7 +35,7 @@ app.use('/api/v1/hymns', middleware.checkToken, hymnRoute);
 
 app.use('/api/v1/languages', middleware.checkToken, languageRoute);
 
-app.use('/api/v1/part', middleware.checkToken, partRoute);
+app.use('/api/v1/parts', middleware.checkToken, partRoute);
 
 
 

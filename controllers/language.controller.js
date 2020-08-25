@@ -14,7 +14,8 @@ exports.updateOne = async(req, res) => {
     let language = await Language.findById(req.params.id, (err, data) => {
 
         language.description = req.body.description;
-        language.save;
+        language.code = req.body.code;
+        language.save();
     
         res.json({
             status: 200,

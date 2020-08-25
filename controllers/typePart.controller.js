@@ -1,13 +1,15 @@
 let TypePart = require('../models/typePart');
 
 exports.createOne = async(res, req) => {
-    let typePart = await TypePart.create(req.body);
+    let typePart = await TypePart.create(req.body, (err, data)=>{
 
-    res.json({
-        status: 200,
-        message: "success",
-        data: typePart
-    })
+        res.json({
+            status: 200,
+            message: "success",
+            data: data || err
+        });
+    });
+
 }
 
 exports.updateOne = async(req, res) => {
