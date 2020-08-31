@@ -3,7 +3,7 @@ let Part = require('../models/part');
 let Author = require('../models/author');
 let Language = require('../models/language');
 
-exports.createOne = async(req, res) => {
+exports.createOne = async (req, res) => {
 
     if (req.body.author.id)
         req.body.author = await Author.findById(req.body.author.id);
@@ -16,7 +16,7 @@ exports.createOne = async(req, res) => {
 
     let hymn = await Hymn.create(req.body);
 
-    parts.forEach(async(part) => {
+    parts.forEach(async (part) => {
         part.hymn = hymn;
         await Part.create(part)
     });
@@ -28,25 +28,27 @@ exports.createOne = async(req, res) => {
     })
 }
 
-exports.updateOne = async(req, res) => {
+exports.updateOne = async (req, res) => {
 
-    let hymn = await Hymn.findById(req.params.id, async(err, data) => {
+    let hymn = await Hymn.findById(req.params.id, async (err, hymn) => {
 
         hymn.number = req.body.number;
         hymn.title = req.body.title;
-        hymn.author = await Author.findById(req.body.author.id)
-        hymn.Language = await Language.findById(req.body.author.id)
+        if (req.body.author)
+            hymn.author = await Author.findById(req.body.author.id)
+        if (req.body.language)
+            hymn.Language = await Language.findById(req.body.author.id)
         hymn.save();
 
         res.json({
             status: 200,
             message: "success",
-            data: data || err
+            data: hymn || err
         });
     });
 }
 
-exports.deleteOne = async(req, res) => {
+exports.deleteOne = async (req, res) => {
     let hymn = await Hymn.findById(req.params.id, (err, data) => {
         hymn.remove()
 
@@ -58,9 +60,9 @@ exports.deleteOne = async(req, res) => {
     });
 }
 
-exports.findOneBy = async(req, res) => {
+exports.findOneBy = async (req, res) => {
 
-    Hymn.findById(req.params.id, async(err, data) => {
+    Hymn.findById(req.params.id, async (err, data) => {
         data.parts = await Part.find({ "hymn": data.id }).populate('typePart');
         res.json({
             status: 200,
@@ -70,7 +72,7 @@ exports.findOneBy = async(req, res) => {
     }).populate('author');
 }
 
-exports.findAllBy = async(req, res) => {
+exports.findAllBy = async (req, res) => {
     let hymns = await Hymn.find({}).populate('author');
 
     res.json({
