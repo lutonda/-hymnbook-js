@@ -40,6 +40,14 @@ exports.updateOne = async (req, res) => {
             hymn.author = await Author.findById(req.body.author._id)
         if (req.body.language)
             hymn.language = await Language.findById(req.body.language._id)
+
+        req.body.parts.forEach(async part=>{
+            await Part.findById(part._id,async (err, newPart)=>{
+                newPart.text=part.text;
+                newPart.typePart=part.typePart;
+                newPart.save();
+            })
+        })
         hymn.save();
 
         res.json({
