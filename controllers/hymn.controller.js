@@ -32,12 +32,14 @@ exports.updateOne = async (req, res) => {
 
     let hymn = await Hymn.findById(req.params.id, async (err, hymn) => {
 
-        hymn.number = req.body.number;
-        hymn.title = req.body.title;
+        if(req.body.number)
+            hymn.number = req.body.number;
+        if(req.body.title)
+            hymn.title = req.body.title;
         if (req.body.author)
-            hymn.author = await Author.findById(req.body.author.id)
+            hymn.author = await Author.findById(req.body.author._id)
         if (req.body.language)
-            hymn.Language = await Language.findById(req.body.author.id)
+            hymn.language = await Language.findById(req.body.language._id)
         hymn.save();
 
         res.json({
@@ -69,7 +71,7 @@ exports.findOneBy = async (req, res) => {
             message: "success",
             data: data || err
         });
-    }).populate('author');
+    }).populate('author').populate('language');
 }
 
 exports.findAllBy = async (req, res) => {
