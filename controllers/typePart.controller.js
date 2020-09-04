@@ -1,34 +1,29 @@
 let TypePart = require('../models/typePart');
 
-exports.createOne = async(req, res) => {
-
-    let typePart = await TypePart.create(req.body, (err, data) => {
-
+exports.createOne = async (req, res) => {
+    await TypePart.create(req.body, (err, typePart) => {
         res.json({
             status: 200,
             message: "success",
-            data: data || err
+            data: typePart || err
         });
     });
-
 }
 
-exports.updateOne = async(req, res) => {
-
-    let typePart = await TypePart.findById(req.params.id, (err, data) => {
+exports.updateOne = async (req, res) => {
+    await TypePart.findById(req.params.id, (err, typePart) => {
         typePart.description = req.body.description;
         typePart.save;
 
         res.json({
             status: 200,
             message: "success",
-            data: data || err
+            data: typePart || err
         })
     });
-
 }
 
-exports.findAllBy = async(req, res) => {
+exports.findAllBy = async (req, res) => {
     let typeParts = await TypePart.find({});
 
     res.json({
@@ -38,24 +33,21 @@ exports.findAllBy = async(req, res) => {
     })
 }
 
-exports.findOneBy = async(req, res) => {
-    let typePart = await TypePart.findById(req.params.id, (err, data) => {
+exports.findOneBy = async (req, res) => {
+    await TypePart.findById(req.params.id, (err, typePart) => {
 
         res.json({
             status: 200,
             message: "success",
-            data: data || err
+            data: typePart || err
         });
     });
-
-
 }
 
-exports.deleteOne = async(req, res) => {
+exports.deleteOne = async (req, res) => {
+    await TypePart.find(req.params.id, (err, typePart) => {
 
-    let types = await TypePart.find(req.params.id, (err, data) => {
-
-        types.remove();
+        typePart.remove();
 
         res.json({
             status: 200,
@@ -63,5 +55,4 @@ exports.deleteOne = async(req, res) => {
             data: null
         })
     });
-
 }
