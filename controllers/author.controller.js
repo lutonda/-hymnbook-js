@@ -8,14 +8,14 @@ exports.createOne = async(req, res) => {
     res.json({
         status: 200,
         message: "success",
-        sources: author
+        data: author
     })
 }
 
 
 exports.upadateOne = async(req, res) => {
 
-    let author = await Author.findByIdAndUpdate(req.params.id, (err, data) => {
+    let author = await Author.findById(req.params.id, (err, author) => {
        
         author.description = req.body.description;
         author.name = req.body.name;
@@ -24,7 +24,7 @@ exports.upadateOne = async(req, res) => {
         res.json({
             status: 200,
             message: "sucess",
-            sources: data || err
+            data: author || err
         });
        
     });
@@ -37,7 +37,7 @@ exports.findOneBy = async(req, res) => {
         res.json({
             status: 200,
             message: "sucess",
-            sources: data || err
+            data: data || err
         });
        
     });
@@ -49,7 +49,7 @@ exports.findAllBy = async(req, res) => {
     res.json({
         status: 200,
         message: "success",
-        sources: authors
+        data: authors
     })
 }
 

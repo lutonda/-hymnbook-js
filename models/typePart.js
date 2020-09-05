@@ -15,7 +15,6 @@ const TypePartSchema = new mongoose.Schema({
         ref: 'Part'
     }]
 
-
 })
 
 

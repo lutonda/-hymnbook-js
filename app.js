@@ -2,7 +2,6 @@ var express = require('express'),
     config = require('./config/database'),
     mongoose = require('mongoose'),
     middleware = require('./config/middleware'),
-    express = require('express'),
     bodyParser = require('body-parser');
 // routes
 var apiRoute = require('./routes/api.route'),
