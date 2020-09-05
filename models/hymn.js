@@ -16,7 +16,8 @@ const HymnSchema = new mongoose.Schema({
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Author'
+        ref: 'Author',
+        require: false
     },
     language: {
         type: mongoose.Schema.Types.ObjectId,

@@ -2,8 +2,6 @@ let Part = require('../models/part');
 let Hymn = require('../models/hymn');
 let TypePart = require('../models/typePart')
 
-const { hashSync } = require('bcryptjs');
-
 exports.createOne = async (req, res) => {
 
     req.body.hymn = await Hymn.findById(req.body.hymn.id);
@@ -19,14 +17,12 @@ exports.createOne = async (req, res) => {
 }
 
 exports.updateOne = async (req, res) => {
+    await Part.findById(req.params.id, async (err, part) => {
 
-
-    let part = await Part.findById(req.params.id, async (err, part) => {
-
-        if(req.body.text)
+        if (req.body.text)
             part.text = req.body.text;
 
-        if(req.body.order)
+        if (req.body.order)
             part.order = req.body.order;
 
         if (req.body.typePart)
@@ -40,35 +36,28 @@ exports.updateOne = async (req, res) => {
             data: part || err
         })
     });
-
 }
 
 exports.deleteOne = async (req, res) => {
-    let part = await Part.findById(req.params.id, (err, data) => {
+    await Part.findById(req.params.id, (err, part) => {
         part.remove();
 
         res.json({
             status: 200,
             message: "sucess",
             data: null
-
         });
-
     });
-
 }
 
 exports.findOneBy = async (req, res) => {
-    let part = await Part.findById(req.params.id, (err, data) => {
+    await Part.findById(req.params.id, (err, part) => {
         res.json({
             status: 200,
             message: "success",
             data: data || err
         });
-
     }).populate('hymn');
-
-
 }
 
 exports.findAllBy = async (req, res) => {

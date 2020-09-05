@@ -2,6 +2,9 @@ var express = require('express'),
     config = require('./config/database'),
     mongoose = require('mongoose'),
     middleware = require('./config/middleware'),
+    express = require('express'),
+
+    cors = require('cors')
     bodyParser = require('body-parser');
 // routes
 var apiRoute = require('./routes/api.route'),
@@ -21,6 +24,8 @@ var db = mongoose.connection;
 // Init App
 var app = express();
 var server = require("http").Server(app);
+
+app.use(cors())
 
 app.use(bodyParser.json());
 

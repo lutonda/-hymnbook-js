@@ -1,6 +1,6 @@
 let Language = require('../models/language');
 
-exports.createOne = async(req, res) => {
+exports.createOne = async (req, res) => {
     let language = await Language.create(req.body);
 
     res.json({
@@ -10,54 +10,45 @@ exports.createOne = async(req, res) => {
     })
 }
 
-exports.updateOne = async(req, res) => {
-    let language = await Language.findById(req.params.id, (err, data) => {
+exports.updateOne = async (req, res) => {
+    await Language.findById(req.params.id, (err, language) => {
 
         language.description = req.body.description;
         language.code = req.body.code;
         language.save();
-    
+
         res.json({
             status: 200,
             message: "success",
-            data: data || err
+            data: language || err
         });
-       
+
     });
-    
 }
 
-exports.deleteOne = async(req, res) => {
-    let language = await Language.findById(req.params.id, (err, data) => {
-
+exports.deleteOne = async (req, res) => {
+    await Language.findById(req.params.id, (err, language) => {
         language.remove();
 
         res.json({
             status: 200,
             message: "success",
             data: null
-            
         });
-       
     });
-    
 }
 
-exports.findOneBy = async(req, res) => {
-    let language = await Language.findById(req.params.id, (err, data) => {
-
+exports.findOneBy = async (req, res) => {
+    await Language.findById(req.params.id, (err, language) => {
         res.json({
             status: 200,
             message: "success",
-            data: data || err
+            data: language || err
         });
-       
     });
-
-   
 }
 
-exports.findAllBy = async(req, res) => {
+exports.findAllBy = async (req, res) => {
     let languages = await Language.find({});
 
     res.json({
