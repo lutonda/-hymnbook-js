@@ -4,7 +4,8 @@
     "description": "generic hymnbook in js",
     "main": "app.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start":"nodemon app.js"
     },
     "repository": {
         "type": "git",
@@ -34,6 +35,7 @@
         "express-session": "^1.15.6",
         "express-validator": "^5.3.1",
         "fs": "0.0.1-security",
+        "googleapis": "^39.2.0",
         "html-table-to-json": "^1.0.0",
         "http": "0.0.0",
         "jsonwebtoken": "^8.5.1",
@@ -48,6 +50,7 @@
         "nodemailer": "^5.1.1",
         "nodemailer-direct-transport": "^3.3.2",
         "nodemailer-express-handlebars": "^3.0.0",
+        "nodemon": "^2.0.4",
         "passport": "^0.4.0",
         "passport-github": "^1.1.0",
         "passport-http": "^0.3.0",
