@@ -44,8 +44,18 @@ exports.listFiles = async (req, res) => {
         });
     })
 }
-exports.download = async (req, res) => {
-
+exports.download = (id, callback) => {
+    init(auth => {
+        const drive = google.drive({ version: 'v3', auth });
+        drive.files.get(
+            {
+                fileId: id,
+                alt: 'media'
+            },
+            { responseType: 'stream' },
+            callback
+        )
+    })
 }
 exports.upload = async function (data, callback) {
     init(auth => {
@@ -63,6 +73,29 @@ exports.upload = async function (data, callback) {
             media: media,
             fields: 'id'
         }, callback);
+
+    })
+};
+
+exports.list = async function (callback) {
+    init(auth => {
+        const drive = google.drive({ version: 'v3', auth });
+        drive.files.list({
+            pageSize: 10,
+            fields: 'nextPageToken, files(id, name)',
+        }, (err, res) => {
+            if (err) return console.log('The API returned an error: ' + err);
+            const files = res.data.files;
+            if (files.length) {
+                console.log('Files:');
+                files.map((file) => {
+                    console.log(`${file.name} - (${file.id})`);
+                });
+            } else {
+                console.log('No files found.');
+            }
+            callback(files)
+        });
 
     })
 };
@@ -118,20 +151,5 @@ function getAccessToken(oAuth2Client, callback) {
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
 function listFiles(auth) {
-    const drive = google.drive({ version: 'v3', auth });
-    drive.files.list({
-        pageSize: 10,
-        fields: 'nextPageToken, files(id, name)',
-    }, (err, res) => {
-        if (err) return console.log('The API returned an error: ' + err);
-        const files = res.data.files;
-        if (files.length) {
-            console.log('Files:');
-            files.map((file) => {
-                console.log(`${file.name} (${file.id})`);
-            });
-        } else {
-            console.log('No files found.');
-        }
-    });
+
 }
