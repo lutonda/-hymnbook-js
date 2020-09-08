@@ -5,7 +5,7 @@
     "main": "app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start":"nodemon app.js"
+        "start": "nodemon app.js"
     },
     "repository": {
         "type": "git",
@@ -23,8 +23,9 @@
     },
     "homepage": "https://github.com/lutonda/-hymnbook-js#readme",
     "dependencies": {
-        "axios": "^0.19.2",
+        "axios": "^0.20.0",
         "bcryptjs": "^2.4.3",
+        "blob-to-stream": "^1.0.3",
         "body-parser": "^1.18.3",
         "cheerio": "^1.0.0-rc.3",
         "connect-flash": "^0.1.1",
