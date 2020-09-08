@@ -3,20 +3,14 @@ var bcrypt = require("bcryptjs");
 const uuidv5 = require("uuid/v5");
 
 const FileSchema = new mongoose.Schema({
-    id: {
-        type: Number
-    },
     description: {
         type: String
     },
     identity: {
-        type: String,
-        require: true,
-        unique: true
+        type: String
     },
     data: {
-        type: String,
-        require: true
+        type: String
     },
     hymns: [{
         type: mongoose.Schema.Types.ObjectId,
