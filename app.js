@@ -13,6 +13,8 @@ var apiRoute = require('./routes/api.route'),
     hymnRoute = require('./routes/hymn.route'),
     languageRoute = require('./routes/language.route'),
     partRoute = require('./routes/part.route');
+    userRoute = require('./routes/user.route');
+    
 const { google } = require('googleapis');
 const fs = require('fs');
 
