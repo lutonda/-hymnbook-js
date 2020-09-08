@@ -13,12 +13,8 @@ var apiRoute = require('./routes/api.route'),
     hymnRoute = require('./routes/hymn.route'),
     languageRoute = require('./routes/language.route'),
     partRoute = require('./routes/part.route');
-<<<<<<< HEAD
-    userRoute = require('./routes/user.route');
-=======
 const { google } = require('googleapis');
 const fs = require('fs');
->>>>>>> 6a3dc12046a9713e907920083b4000a6c6c61297
 
 const TOKEN_PATH = './config/token.json';
 //sect the mongoo connection string from config
