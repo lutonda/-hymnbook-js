@@ -22,6 +22,7 @@ const TOKEN_PATH = './config/token.json';
 mongoose.connect(config.development, (err) => {
     let t = err;
 });
+
 var db = mongoose.connection;
 
 // Init App
