@@ -12,7 +12,8 @@ var apiRoute = require('./routes/api.route'),
     authorRoute = require('./routes/author.route'),
     hymnRoute = require('./routes/hymn.route'),
     languageRoute = require('./routes/language.route'),
-    partRoute = require('./routes/part.route');
+    partRoute = require('./routes/part.route'),
+    fileRoute = require('./routes/file.route');
 const { google } = require('googleapis');
 const fs = require('fs');
 
@@ -66,6 +67,8 @@ app.use('/api/v1/hymns', middleware.checkToken, hymnRoute);
 app.use('/api/v1/languages', middleware.checkToken, languageRoute);
 
 app.use('/api/v1/parts', middleware.checkToken, partRoute);
+
+app.use('/api/v1/files', middleware.checkToken, fileRoute);
 
 
 
