@@ -2,6 +2,12 @@ let Hymn = require('../models/hymn');
 let Part = require('../models/part');
 let Author = require('../models/author');
 let Language = require('../models/language');
+let File = require('../models/file');
+
+const fs = require('fs')
+const Readable = require('stream').Readable
+
+const google = require('./../services/google.drive.service');
 
 exports.createOne = async (req, res) => {
 
@@ -58,6 +64,22 @@ exports.updateOne = async (req, res) => {
 
         })
         hymn.save();
+        req.body.files.forEach(file => {
+            const imgBuffer = Buffer.from(file.data, 'base64')
+            var s = new Readable()
+            s.push(imgBuffer)
+            s.push(null)
+            const data = { name: hymn.title, data: s,type:file.type }
+             google.upload(data, (err, data) => {
+                 if(data){
+                     let file=new File();
+                     file._id=data.id;
+                     file.hymns.push(hymn)
+                     file.save
+                 }
+                 
+             })
+        })
 
         res.json({
             status: 200,

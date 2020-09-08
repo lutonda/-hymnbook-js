@@ -31,7 +31,11 @@ const HymnSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    files: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'File'
+    }]
 
 })
 
