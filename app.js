@@ -13,11 +13,13 @@ var apiRoute = require('./routes/api.route'),
     hymnRoute = require('./routes/hymn.route'),
     languageRoute = require('./routes/language.route'),
     partRoute = require('./routes/part.route');
+    userRoute = require('./routes/user.route');
 
 //sect the mongoo connection string from config
 mongoose.connect(config.development, (err) => {
     let t = err;
 });
+
 var db = mongoose.connection;
 
 
@@ -40,6 +42,8 @@ app.use('/api/v1/hymns', middleware.checkToken, hymnRoute);
 app.use('/api/v1/languages', middleware.checkToken, languageRoute);
 
 app.use('/api/v1/parts', middleware.checkToken, partRoute);
+
+app.use('/api/v1/users', middleware.checkToken, userRoute);
 
 
 
