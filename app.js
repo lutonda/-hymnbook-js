@@ -12,9 +12,8 @@ var apiRoute = require('./routes/api.route'),
     authorRoute = require('./routes/author.route'),
     hymnRoute = require('./routes/hymn.route'),
     languageRoute = require('./routes/language.route'),
-    partRoute = require('./routes/part.route');
-    userRoute = require('./routes/user.route');
-    
+    partRoute = require('./routes/part.route'),
+    fileRoute = require('./routes/file.route');
 const { google } = require('googleapis');
 const fs = require('fs');
 
@@ -70,11 +69,12 @@ app.use('/api/v1/languages', middleware.checkToken, languageRoute);
 
 app.use('/api/v1/parts', middleware.checkToken, partRoute);
 
-app.use('/api/v1/users', middleware.checkToken, userRoute);
+app.use('/api/v1/files', middleware.checkToken, fileRoute);
 
 
 
 app.set('port', (process.env.PORT || 8800));
-server.listen(app.get('port'), function () {
-    console.log('Listinig to port ' + app.get('port'));
+app.set('address', '0.0.0.0');
+server.listen(app.get('port'),app.get('address'), function () {
+    console.log('Listinig to ' + app.get('address')+' port ' + app.get('port'));
 });
