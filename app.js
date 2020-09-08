@@ -74,6 +74,7 @@ app.use('/api/v1/files', middleware.checkToken, fileRoute);
 
 
 app.set('port', (process.env.PORT || 8800));
-server.listen(app.get('port'), function () {
-    console.log('Listinig to port ' + app.get('port'));
+app.set('address', '0.0.0.0');
+server.listen(app.get('port'),app.get('address'), function () {
+    console.log('Listinig to ' + app.get('address')+' port ' + app.get('port'));
 });
