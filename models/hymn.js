@@ -11,8 +11,7 @@ const HymnSchema = new mongoose.Schema({
     },
     number: {
         type: Number,
-        require: true,
-        unique: true
+        require: true
     },
     author: {
         type: mongoose.Schema.Types.ObjectId,

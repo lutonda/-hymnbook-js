@@ -11,15 +11,16 @@ const google = require('./../services/google.drive.service');
 
 exports.createOne = async (req, res) => {
 
+/*
     if (req.body.author._id)
         req.body.author = await Author.findById(req.body.author.id);
     else {
         req.body.author = null//;await Author.create(req.body.author);
-    }
-
+    }*/
+req.body.author = null
     let parts = req.body.parts;
     req.body.parts = null;
-
+    req.body.files=[];
     req.body.language = await Language.findById(req.body.language._id)
 
     Hymn.create(req.body, async (err, hymn) => {
@@ -49,7 +50,7 @@ exports.updateOne = async (req, res) => {
             hymn.author = await Author.findById(req.body.author._id)
         if (req.body.language)
             hymn.language = await Language.findById(req.body.language._id)
-
+        
         req.body.parts.forEach(async part => {
             if (part._id)
                 await Part.findById(part._id, async (err, newPart) => {
@@ -64,6 +65,7 @@ exports.updateOne = async (req, res) => {
 
         })
         hymn.save();
+        
         req.body.files.forEach(file => {
             const imgBuffer = Buffer.from(file.data, 'base64')
             var s = new Readable()
