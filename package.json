@@ -51,7 +51,6 @@
         "nodemailer": "^5.1.1",
         "nodemailer-direct-transport": "^3.3.2",
         "nodemailer-express-handlebars": "^3.0.0",
-        "nodemon": "^2.0.4",
         "passport": "^0.4.0",
         "passport-github": "^1.1.0",
         "passport-http": "^0.3.0",
@@ -69,6 +68,7 @@
         "babel-core": "7.0.0-bridge.0",
         "babel-jest": "24.1.0",
         "jest": "24.1.0",
+        "nodemon": "^2.0.4",
         "react-test-renderer": "16.6.3",
         "sequelize-cli": "^5.4.0"
     },

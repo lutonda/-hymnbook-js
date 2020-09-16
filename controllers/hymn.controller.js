@@ -123,7 +123,7 @@ exports.findOneBy = async (req, res) => {
 }
 
 exports.findAllBy = async (req, res) => {
-    let hymns = await Hymn.find({}).populate('author');
+    let hymns = await Hymn.find({}).populate('language');
 
     res.json({
         status: 200,
