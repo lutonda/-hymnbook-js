@@ -39,8 +39,13 @@ exports.createOne = async (req, res) => {
 }
 
 exports.updateOne = async (req, res) => {
-
-    let hymn = await Hymn.findById(req.params.id, async (err, hymn) => {
+/**
+ *
+ *
+ * @param {*} err
+ * @param {*} hymn
+ */
+hymn = await Hymn.findById(req.params.id, async (err, hymn) => {
 
         if (req.body.number)
             hymn.number = req.body.number;
@@ -57,14 +62,23 @@ exports.updateOne = async (req, res) => {
                     newPart.text = part.text;
                     newPart.typePart = part.typePart;
                     newPart.order = part.order;
-                    let s=newPart.save();
+                    let s = newPart.save();
                 })
             else {
                 part.hymn = hymn;
                 await Part.create(part)
             }
 
-        })
+        });
+
+
+        
+        Part.find().
+            where('_id').
+            nin(req.body.parts.map(p => p._id)).
+            deleteMany({ 'hymn': hymn._id }).
+            exec();
+
         hymn.save();
 
         req.body.files.forEach(file => {
