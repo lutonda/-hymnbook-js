@@ -72,7 +72,7 @@ hymn = await Hymn.findById(req.params.id, async (err, hymn) => {
         });
 
 
-        
+        //Delete parts of not sent on hymn update
         Part.find().
             where('_id').
             nin(req.body.parts.map(p => p._id)).
