@@ -9,7 +9,7 @@ const Readable = require('stream').Readable
 
 const google = require('./../services/google.drive.service');
 
-exports.createOne = async (req, res) => {
+exports.createOne = async(req, res) => {
 
     /*
         if (req.body.author._id)
@@ -23,8 +23,8 @@ exports.createOne = async (req, res) => {
     req.body.files = [];
     req.body.language = await Language.findById(req.body.language._id)
 
-    Hymn.create(req.body, async (err, hymn) => {
-        parts.forEach(async (part) => {
+    Hymn.create(req.body, async(err, hymn) => {
+        parts.forEach(async(part) => {
             part.hymn = hymn;
             await Part.create(part)
         });
@@ -38,14 +38,14 @@ exports.createOne = async (req, res) => {
 
 }
 
-exports.updateOne = async (req, res) => {
-/**
- *
- *
- * @param {*} err
- * @param {*} hymn
- */
-hymn = await Hymn.findById(req.params.id, async (err, hymn) => {
+exports.updateOne = async(req, res) => {
+    /**
+     *
+     *
+     * @param {*} err
+     * @param {*} hymn
+     */
+    hymn = await Hymn.findById(req.params.id, async(err, hymn) => {
 
         if (req.body.number)
             hymn.number = req.body.number;
@@ -56,9 +56,9 @@ hymn = await Hymn.findById(req.params.id, async (err, hymn) => {
         if (req.body.language)
             hymn.language = await Language.findById(req.body.language._id)
 
-        req.body.parts.forEach(async (part, i) => {
+        req.body.parts.forEach(async(part, i) => {
             if (part._id)
-                await Part.findById(part._id, async (err, newPart) => {
+                await Part.findById(part._id, async(err, newPart) => {
                     newPart.text = part.text;
                     newPart.typePart = part.typePart;
                     newPart.order = part.order;
@@ -74,10 +74,10 @@ hymn = await Hymn.findById(req.params.id, async (err, hymn) => {
 
         //Delete parts of not sent on hymn update
         Part.find().
-            where('_id').
-            nin(req.body.parts.map(p => p._id)).
-            deleteMany({ 'hymn': hymn._id }).
-            exec();
+        where('_id').
+        nin(req.body.parts.map(p => p._id)).
+        deleteMany({ 'hymn': hymn._id }).
+        exec();
 
         hymn.save();
 
@@ -87,7 +87,7 @@ hymn = await Hymn.findById(req.params.id, async (err, hymn) => {
             s.push(imgBuffer)
             s.push(null)
             const data = { name: hymn.number + '-' + hymn.title, data: s, type: file.type }
-            google.upload(data, async (err, data) => {
+            google.upload(data, async(err, data) => {
                 try {
                     if (data) {
                         let file = await File.create({ 'identity': data.id });
@@ -112,7 +112,7 @@ hymn = await Hymn.findById(req.params.id, async (err, hymn) => {
     });
 }
 
-exports.deleteOne = async (req, res) => {
+exports.deleteOne = async(req, res) => {
     let hymn = await Hymn.findById(req.params.id, (err, data) => {
         hymn.remove()
 
@@ -124,14 +124,14 @@ exports.deleteOne = async (req, res) => {
     });
 }
 
-exports.findOneBy = async (req, res) => {
+exports.findOneBy = async(req, res) => {
 
-    Hymn.findById(req.params.id, async (err, hymn) => {
+    Hymn.findById(req.params.id, async(err, hymn) => {
         hymn.parts = await Part.find({ "hymn": hymn.id }).populate('typePart');
         hymn.parts = hymn.parts.sort((x, y) => x.order > y.order ? 1 : -1)
-        /* hymn.files.forEach(async file => {
-             file = await File.find(file._id)
-             })*/
+            /* hymn.files.forEach(async file => {
+                 file = await File.find(file._id)
+                 })*/
         res.json({
             status: 200,
             message: "success",
@@ -140,8 +140,8 @@ exports.findOneBy = async (req, res) => {
     }).populate('author').populate('language').populate('files');
 }
 
-exports.findAllBy = async (req, res) => {
-    let hymns = await Hymn.find({}).populate('language');
+exports.findAllBy = async(req, res) => {
+    let hymns = await Hymn.find().populate('language');
 
     res.json({
         status: 200,
